@@ -1,5 +1,6 @@
 package CsProject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -10,8 +11,13 @@ import java.util.ArrayList;
  * @version 1.0 04/09/2020
  */
 
-public class RideList {
+public class RideList implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	// Array List of Ride objects 
 	private ArrayList<Ride> rides; 
 	
@@ -40,10 +46,15 @@ public class RideList {
 		
 		// Adds all rides to single String
 		for(int i = 0; i < rides.size(); i++) {
-			result = rides.get(i).toString() + "\n"; 
+			result += (i+1) + ") " + rides.get(i).toString() + "\n\n"; 
 		}
 		
 		return result; 
+	}
+	
+	// This function adds ride to the list
+	public void addRide(Ride ride) {
+		this.rides.add(ride); 
 	}
 
 }

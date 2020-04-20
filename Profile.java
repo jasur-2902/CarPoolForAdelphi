@@ -1,3 +1,4 @@
+package CsProject;
 
 /**
  * Write a description of class Profile here.
@@ -5,7 +6,7 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Profile
+public class Profile 
 {
     private String name;
     private String studentID;
@@ -13,9 +14,9 @@ public class Profile
     
     public Profile()
     {
-        name="John Smith";
-        studentID="0000000";
-        email="johnsmith@gmail.com";
+        this.name="John Smith";
+        this.studentID="0000000";
+        this.email="johnsmith@gmail.com";
     }
     
     public Profile(String name, String ID, String email)

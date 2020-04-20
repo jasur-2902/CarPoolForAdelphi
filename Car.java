@@ -1,18 +1,26 @@
+package CsProject;
+
+import java.io.Serializable;
 
 /**
- * Write a description of class Car here.
- *
- * @author (your license)
- * @version (a version number or a date)
+ * @authors Jasur Shukurov && Matt Vang
+ * Car object class
+ * 
+ * @version 1.0 04/09/2020
  */
-public class Car
+
+public class Car implements Serializable
 {
-    private String license, model, color;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String license, model, color;
     public Car()
     {
-        this.license=null;
-        this.model=null;
-        this.color=null;
+        this.license = "AA28019";
+        this.model = "BMW M5";
+        this.color = "Dark Blue";
     }
     
     public Car(String license, String model, String color)

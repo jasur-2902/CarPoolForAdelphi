@@ -1,31 +1,75 @@
+package CsProject;
+
 import java.io.*;
-import java.net.*;
 import java.util.ArrayList;
-public class Driver {
-    static Profile myProfile;
-    Car myCar;
-    //ArrayList<Ride> myList;
-    public static void main(String[] args) throws IOException 
-    {
-        //Initialize Ride list, use addRide to add to the list
-        //                      use cancelRide to remove
-        
-        
-        //Start sending/communicating the ride list to Passenger
-        
+
+/**
+ * @authors Jasur Shukurov && Matt Vang
+ * Driver - Driver object 
+ * 
+ * @version 1.0 04/09/2020
+ */
+
+
+// NOTE: I am using Profile as a parent class
+public class Driver extends Profile implements Serializable {
+
+	// Serializable ID 
+	private static final long serialVersionUID = 1L;
+   
+	// Car object 
+    private Car car;
+    
+    // ArrayList of rides which belongs to this driver
+    private ArrayList<Ride> driverRides; 
+    
+    // Default Constructor with some default values 
+    public Driver(){
+    	super(); 
+    	this.car = new Car();
+    	this.driverRides = new ArrayList<Ride>(); 
     }
     
-    public void addRide(String pickup, String time, Driver driver,
-                        String destination, int seats, String rideID, Car car)
-                        
-    {
-        //Use the information 
-    
-        
+    // Driver object Constructor
+    public Driver (String name, String ID, String email, Car car) {
+    	super(name,ID,email);
+    	this.car = car; 
+    	this.driverRides = new ArrayList<Ride>(); 
     }
     
-    public void cancelRide(String rideID )
-    {
     
+    // This method Returns all the rides as a String 
+    public String displayAll() {
+		
+		String result = "" ; 
+				
+		// If there are no rides, it returns error message.
+		if(driverRides.size() == 0) {
+			return "Sorry there are no rides"; 
+		}
+		
+		
+		// Adds all rides to single String
+		for(int i = 0; i < driverRides.size(); i++) {
+			result += driverRides.get(i).toString() + "\n"; 
+		}
+		
+		return result; 
+	}
+    
+ 	// This method add new ride to the arrayList 	
+	public void addRide(Ride ride)                 
+    {
+    	this.driverRides.add(ride);  
     }
+    
+    // Getters and Setters
+    public Car getCar() {
+		return car;
+	}
+
+	public void setCar(Car car) {
+		this.car = car;
+	}
+    
 }

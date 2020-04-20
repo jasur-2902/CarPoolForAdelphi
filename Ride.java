@@ -1,6 +1,8 @@
 package CsProject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @authors Jasur Shukurov && Matt Vang
@@ -9,13 +11,18 @@ import java.util.ArrayList;
  * @version 1.0 04/09/2020
  */
 
-public class Ride {
+public class Ride implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/** Ride Information */
 	
 	// Ride ID# 
-	private int rideId; 
+	private String rideId; 
 	
 	// PickUp Location & Destination 
 	private String pickUpSpot;
@@ -38,16 +45,25 @@ public class Ride {
 	private int numberOfSeats; 
 
 	
+	public Ride() {
+		
+	}
+	
+	
 
 	/**
 	 * Constructor to create a Ride object 
 	 */
-	public Ride(int rideId, String pickUpSpot, int pickUpDay, 
+	public Ride(String pickUpSpot, int pickUpDay, 
 				int pickUpMonth, int pickUpYear, int pickUpHour, 
 			 	int pickUpMinute, Driver driverInformation, 
 			 	int numberOfSeats, String pickUpDestination) {
 		
-		this.rideId = rideId;
+		
+		Random rand = new Random(); 
+		this.rideId = Integer.toString(rand.nextInt(10000000));
+		
+		
 		this.pickUpSpot = pickUpSpot;
 		this.pickUpDestination = pickUpDestination;
 		this.pickUpDay = pickUpDay;
@@ -88,20 +104,24 @@ public class Ride {
 	
 	// toString method which returns ride information as a String
 	public String toString() {
-		return "Ride [rideId=" + rideId + ", pickUpSpot=" + pickUpSpot + ", pickUpDestination=" + pickUpDestination
-				+ ", pickUpDay=" + pickUpDay + ", pickUpMonth=" + pickUpMonth + ", pickUpYear=" + pickUpYear
-				+ ", pickUpHour=" + pickUpHour + ", pickUpMinute=" + pickUpMinute + "]";
+		return 	"- The Ride# " + rideId 
+				+ "\nPick Up Spot: " + pickUpSpot 
+				+ "\nPick Up Destination: " + pickUpDestination
+				+ "\nDate: " + pickUpMonth + "/" + pickUpDay + "/" + pickUpYear
+				+ "\nTime: " + pickUpHour + ":" + pickUpMinute
+				+ "\n\n- Driver Information:\n" + driverInformation.toString()
+				+ "\n\n- Car Information:\n" + driverInformation.getCar();
 	}
 
-
+	
 	
 	// Getters and Setters for Ride Object 
-	public int getRideId() {
+	public String getRideId() {
 		return rideId;
 	}
 
 
-	public void setRideId(int rideId) {
+	public void setRideId(String rideId) {
 		this.rideId = rideId;
 	}
 
