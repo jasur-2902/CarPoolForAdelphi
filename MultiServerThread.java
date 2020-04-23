@@ -1,4 +1,4 @@
-package CsProject;
+ 
 
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
@@ -61,17 +61,15 @@ public class MultiServerThread extends Thread {
            
             while ((obj = in.readObject()) != null) {
             	
-     			
-				Message messagein = Message.class.cast(obj);
-				
-				output =  kkp.processInput(messagein);
+     		Message messagein = Message.class.cast(obj);
+		output =  kkp.processInput(messagein);
                 
-    
+		if (Message.class.cast(output).getMessage().equalsIgnoreCase("end"))
+                    break;
                 out.writeObject(output);
                 
                 
-                if (outputLine.equals("Bye"))
-                    break;
+                
             }
             socket.close();
         } catch (IOException | ClassNotFoundException e) {
