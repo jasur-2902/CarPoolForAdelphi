@@ -1,13 +1,15 @@
 package CsProject;
 
+
+
 import java.io.Serializable;
 
 /**
- * @authors Jasur Shukurov && Matt Vang
- * Message object - this object is being sent between Server and User 
- * 
- * @version 1.0 04/09/2020
- */
+* @authors Jasur Shukurov && Matt Vang
+* Message object - this object is being sent between Server and User 
+* 
+* @version 1.0 04/09/2020
+*/
 
 public class Message implements Serializable {
 	
@@ -92,7 +94,8 @@ public class Message implements Serializable {
 	
 	@Override
 	public String toString() {
-		return name + ": " + message ;
+		return "----------------------------------------------------------\n"
+		+name + ": " + message;
 	}
 	
 	

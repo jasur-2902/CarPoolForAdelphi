@@ -1,5 +1,7 @@
 package CsProject;
 
+ 
+
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  *
@@ -36,37 +38,38 @@ import java.io.*;
 
 
 public class MultiServer {
-	
-	//Creating new RideList - this is Ride List, where all the user will access 
-	private static RideList rides; 
-	
+    
+    //Creating new RideList - this is Ride List, where all the user will access 
+    private static RideList rides; 
+    
     public static void main(String[] args) throws IOException {
-
-    rides = new RideList();
-    	
-    if (args.length != 1) {
-        System.err.println("Usage: java KKMultiServer <port number>");
-        System.exit(1);
-    }
+        Drop drop = new Drop();
+        rides = new RideList(drop);
+            
+        if (args.length != 1) {
+            System.err.println("Usage: java KKMultiServer <port number>");
+            System.exit(1);
+        }
 
         int portNumber = Integer.parseInt(args[0]);
         boolean listening = true;
         
+        // create a single thread to store rides accross server 
+        new Thread(rides).start();
+        
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) { 
-            while (listening) {
-	            new MultiServerThread(serverSocket.accept()).start();
-	        }
-	    } catch (IOException e) {
+            while (listening) {               
+                new MultiServerThread(serverSocket.accept(),drop).start();
+            }
+        } catch (IOException e) {
             System.err.println("Could not listen on port " + portNumber);
             System.exit(-1);
         }
     }
     
     //Returns RideList 
-    public static RideList getRideList() {
-    	
-    	return rides;
-    	
+    public static RideList getRideList() {        
+        return rides;        
     }
     
 }

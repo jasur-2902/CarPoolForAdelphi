@@ -1,5 +1,7 @@
 package CsProject;
 
+ 
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -21,38 +23,27 @@ public class Driver extends Profile implements Serializable {
     private Car car;
     
     // ArrayList of rides which belongs to this driver
-    private ArrayList<Ride> driverRides; 
+    private RideList driverRides; 
     
     // Default Constructor with some default values 
     public Driver(){
     	super(); 
     	this.car = new Car();
-    	this.driverRides = new ArrayList<Ride>(); 
+    	this.driverRides = new RideList(); 
     }
     
     // Driver object Constructor
     public Driver (String name, String ID, String email, Car car) {
     	super(name,ID,email);
     	this.car = car; 
-    	this.driverRides = new ArrayList<Ride>(); 
+    	this.driverRides = new RideList(); 
     }
     
     
     // This method Returns all the rides as a String 
     public String displayAll() {
 		
-		String result = "" ; 
-				
-		// If there are no rides, it returns error message.
-		if(driverRides.size() == 0) {
-			return "Sorry there are no rides"; 
-		}
-		
-		
-		// Adds all rides to single String
-		for(int i = 0; i < driverRides.size(); i++) {
-			result += driverRides.get(i).toString() + "\n"; 
-		}
+		String result = driverRides.displayAll();
 		
 		return result; 
 	}
@@ -60,7 +51,7 @@ public class Driver extends Profile implements Serializable {
  	// This method add new ride to the arrayList 	
 	public void addRide(Ride ride)                 
     {
-    	this.driverRides.add(ride);  
+    	this.driverRides.getList().add(ride);  
     }
     
     // Getters and Setters
@@ -71,5 +62,11 @@ public class Driver extends Profile implements Serializable {
 	public void setCar(Car car) {
 		this.car = car;
 	}
+	
+	// Gets number of rides driver has
+	public int numOfRides(){
+		return driverRides.getSize(); 
+	}
     
 }
+
