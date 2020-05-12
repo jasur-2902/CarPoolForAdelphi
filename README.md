@@ -18,8 +18,7 @@ Another challege we had was passing ride and rideList objects.
 
 ## Accomplishments that we are proud of
 Even though, we had limited time, we were able to create fully usible version of our app. In future versions we are planning to use GUI and increase number of features. 
-## What I learned
-We learn how to train the ML models.
+
 
 ## Group
 1 - Jasur Shukurov 
